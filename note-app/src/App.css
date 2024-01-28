@@ -29,8 +29,8 @@ html,body {
   display: flex;
 }
 .note_image{
-  height: 20vh;
-  width: 30vw;
+  height: 23vh;
+  width: 33vw;
   align-content: center;
 }
 .logo-heading{
