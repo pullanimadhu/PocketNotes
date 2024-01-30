@@ -1,0 +1,24 @@
+/* GroupList.css */
+.note-subject {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .circle {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #001F8B;
+    color: white;
+    margin-left: 1.293rem; /* Adjust the right margin as needed */
+    font-weight: bold;
+  }
+  
+  .group-name {
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+  

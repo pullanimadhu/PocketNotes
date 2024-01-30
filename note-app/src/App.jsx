@@ -61,13 +61,13 @@ function App() {
     }
   };
   
-  const handleAddNote = () => {
+  const handleAddNote = (temp) => {
     setNotes((prevNotes) => ({
       ...prevNotes,
-      [selectedGroup]: ['', ...(prevNotes[selectedGroup] || [])],
+      [selectedGroup]: [temp, ...(prevNotes[selectedGroup] || [])],
     }));
   };
-
+console.log('hi',notes)
   return (
     <Wrapper>
       <div className='screen'>
