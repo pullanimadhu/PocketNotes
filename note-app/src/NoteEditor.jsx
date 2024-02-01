@@ -12,13 +12,12 @@ const Wrapper = styled.div`
 const ChatContainer = styled.div`
   flex: 1;
   overflow-y: auto;
-  height:100
   padding: 10px;
   border: 1px solid #d3d3d3;
   border-radius: 8px;
-  margin-bottom: 10px;
-  height: ${(props) => (props.selectedGroup ? 'calc(100% - 200px)' : '900px')};
-  width: 100%;
+  width:74
+  margin: 10px;
+  max-height: 60vh; /* Set a fixed height for scrolling */
 `;
 
 const InputContainer = styled.div`
@@ -26,19 +25,10 @@ const InputContainer = styled.div`
   align-items: center;
 `;
 
-const StyledInput = styled.input`
-  width: calc(100% - 40px);
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #d3d3d3;
-  border-radius: 8px;
-  outline: none;
-  box-sizing: border-box;
-  margin-top: 10px;
-`;
 
 
-const NoteEditor = ({ selectedGroup, notes, handleAddNote }) => {
+
+const NoteEditor = ({ selectedGroup, notes, handleAddNote, date }) => {
   const [inputText, setInputText] = useState('');
 
   const handleSend = () => {
@@ -48,11 +38,37 @@ const NoteEditor = ({ selectedGroup, notes, handleAddNote }) => {
       console.log('Updated notes:', notes);
     }
   };
+  const formatDateString = (dateString) => {
+    const options = { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    const formattedDate = new Date(dateString).toLocaleString('en-US', options);
+    return formattedDate;
+  };
+
 
   return (
     <Wrapper>
-      <span className='heading-display' style={{color:'#FFFFFF'}}>{selectedGroup || 'Pocket Notes'}</span>
-      <ChatContainer className='text-display' style={{height:'40vh',width:'74vw'}} selectedGroup={selectedGroup}>
+      <div className="new-trail" style={{backgroundColor:'#DAE5F5'}}>
+        <div className="new-trail-a">
+
+
+      <h1 className='heading-display' style={{color:'#FFFFFF'}}>{selectedGroup || 'Pocket Notes'}</h1>
+      <div className='container-a'>
+
+      {notes[selectedGroup]?.slice().reverse().map((message, index) => (
+        <div className="box">
+          
+        <li style={{listStyleType:'none', textAlign:'left'}}>
+          {message}
+        </li>
+        <li style={{listStyleType:'none', textAlign:'right'}}>
+        {formatDateString(date[message])}
+        </li>
+        </div>
+      ))}
+
+        </div>
+        </div>
+      {/* <ChatContainer className='text-display' style={{height:'40vh',width:'74vw'}} selectedGroup={selectedGroup}>
         <Grid container spacing={4}>
         {selectedGroup &&
           notes[selectedGroup]?.slice().reverse().map((message, index) => (
@@ -67,27 +83,32 @@ const NoteEditor = ({ selectedGroup, notes, handleAddNote }) => {
               p: 1,
               borderRadius: 1,
               textAlign: 'center',
-              fontSize: '1.875rem',
-              fontWeight: '700',
+              fontSize: '15px',
+              fontWeight: '500',
               padding :'10px',
              }}>{message}</Box>
           ))}
           </Grid>
-      </ChatContainer>
+      </ChatContainer> */}
+      <div className="new-trail-b">
+
       {selectedGroup && (
         <InputContainer>
+
         <div className="input-send">
         <textarea value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Type a message..." className='input-text' name="input" id="" cols="30" rows="10"></textarea>
-        <button onClick={handleSend}>
+        <button className='note-submit' onClick={handleSend}>
         <img src="/images/send-icon.svg" alt="hbhbjbjbh" />
         </button>
 
-        </div>
+            </div>
           
         </InputContainer>
       )}
+      </div>
+      </div>
     </Wrapper>
   );
 };

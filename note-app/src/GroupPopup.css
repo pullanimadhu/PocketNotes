@@ -1,4 +1,4 @@
-/* GroupPopup.css
+GroupPopup.css
 .group-popup {
     display: flex;
     flex-direction: column;
@@ -10,6 +10,7 @@
   .color-chooser {
     display: flex;
     gap: 5px;
+    justify-content: center;
   }
   
   .color-circle {
@@ -27,4 +28,8 @@
     margin-top: 10px;
     border: 2px solid transparent;
   }
-   */
+  .popup-create{
+    background-color: #001F8B;
+    justify-content: left;
+  }
+  
